@@ -21,8 +21,34 @@
 #  THE SOFTWARE.
 
 FROM jenkinsci/slave
-MAINTAINER Nicolas De Loof <nicolas.deloof@gmail.com>
+MAINTAINER Julien 'Lta' BALLET <contact@lta.io>
+
+#
+# Install a bunch of web development related packages
+# As well as sudo to allow to hack the image in jenkins
+#
+USER root
+
+COPY dotdeb.list /etc/apt/sources.list.d/dotdeb.list
+RUN wget -O- https://www.dotdeb.org/dotdeb.gpg | apt-key add -
+
+RUN apt-get update -y
+RUN apt-get dist-upgrade -y
+
+RUN apt-get install -y \
+    curl \
+    build-essential \
+    ruby ruby-dev \
+    php7.0-cli php7.0-dev \
+    nodejs nodejs-dev \
+    sudo
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY jenkins.sudoers /etc/sudoers.d/jenkins
 
 COPY jenkins-slave /usr/local/bin/jenkins-slave
 
+
+USER jenkins
 ENTRYPOINT ["jenkins-slave"]

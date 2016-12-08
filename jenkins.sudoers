@@ -1,0 +1,3 @@
+# This jenkins slave is meant to be run in ephemary containers
+# so we don't care that much if the system get destroyed
+jenkins ALL=(ALL) NOPASSWD:ALL
