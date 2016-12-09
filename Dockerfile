@@ -60,5 +60,4 @@ COPY jenkins.sudoers /etc/sudoers.d/jenkins
 COPY jenkins-slave /usr/local/bin/jenkins-slave
 
 USER jenkins
-VOLUME /var/lib/mysql
 ENTRYPOINT ["jenkins-slave"]
