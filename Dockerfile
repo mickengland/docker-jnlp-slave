@@ -48,7 +48,7 @@ RUN apt-get install -y \
     build-essential \
     ruby ruby-dev \
     php7.0-cli php7.0-dev \
-    php7.0-curl php7.0-mbstring php7.0-xml php7.0-soap php7.0-gd \
+    php7.0-curl php7.0-mbstring php7.0-xml php7.0-soap php7.0-gd php7.0-mysql \
     nodejs nodejs-dev \
     mysql-server \
     sudo
