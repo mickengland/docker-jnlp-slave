@@ -29,8 +29,6 @@
 
 echo "Starting Mysql server:"
 sudo service mysql start
-echo "Starting Redis server:"
-sudo service redis-server start
 
 if [ $# -eq 1 ]; then
 
