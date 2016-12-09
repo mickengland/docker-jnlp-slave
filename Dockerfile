@@ -32,15 +32,25 @@ USER root
 COPY dotdeb.list /etc/apt/sources.list.d/dotdeb.list
 RUN wget -O- https://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
+# Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
+RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+
+# Got up-to-date shit :)
 RUN apt-get update -y
 RUN apt-get dist-upgrade -y
+
+# Configure Mysql
+RUN echo 'mysql-server mysql-server/root_password password root' | debconf-set-selections
+RUN echo 'mysql-server mysql-server/root_password_again password root' | debconf-set-selections
 
 RUN apt-get install -y \
     curl \
     build-essential \
     ruby ruby-dev \
     php7.0-cli php7.0-dev \
+    php7.0-curl php7.0-mbstring php7.0-xml php7.0-soap php7.0-gd \
     nodejs nodejs-dev \
+    mysql-server \
     sudo
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -49,6 +59,6 @@ COPY jenkins.sudoers /etc/sudoers.d/jenkins
 
 COPY jenkins-slave /usr/local/bin/jenkins-slave
 
-
 USER jenkins
+VOLUME /var/lib/mysql
 ENTRYPOINT ["jenkins-slave"]
