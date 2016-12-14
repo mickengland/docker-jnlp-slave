@@ -1,6 +1,10 @@
 # Jenkins JNLP slave Docker image
 
-[`elthariel/docker-jnlp-slave`](https://hub.docker.com/r/elthariel/docker-jnlp-slave/)
+[![](https://images.microbadger.com/badges/image/elthariel/docker-jnlp-slave.svg)](https://microbadger.com/images/elthariel/docker-jnlp-slave "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/elthariel/docker-jnlp-slave.svg)](https://microbadger.com/images/elthariel/docker-jnlp-slave "Get your own version badge on microbadger.com")
+
+Find this image on the DockerHub: [`elthariel/docker-jnlp-slave`](https://hub.docker.com/r/elthariel/docker-jnlp-slave/)
+
 
 A [Jenkins](https://jenkins-ci.org) slave using JNLP to establish connection.
 
