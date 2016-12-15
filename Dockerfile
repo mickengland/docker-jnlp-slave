@@ -47,7 +47,7 @@ RUN apt-get install -qy \
     curl \
     build-essential \
     ruby ruby-dev \
-    nodejs nodejs-dev \
+    nodejs nodejs-dev node npm \
     mysql-server \
     sudo
 
