@@ -34,7 +34,7 @@ COPY dotdeb.list /etc/apt/sources.list.d/dotdeb.list
 RUN wget -O- https://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
 # Getting recent node version
-RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
