@@ -48,7 +48,7 @@ RUN echo 'mysql-server mysql-server/root_password password root' | debconf-set-s
 RUN echo 'mysql-server mysql-server/root_password_again password root' | debconf-set-selections
 
 RUN apt-get install -qy \
-    curl \
+    curl s3cmd \
     build-essential \
     ruby ruby-dev \
     nodejs \
