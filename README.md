@@ -20,6 +20,7 @@ This fork of the official image adds the following things to the base image:
    a security breach but since this is intended to run in ephemeral containers
    launched by trusted users, we don't care as much.
  - Installs `mysql-server`. Admin username:password = root:root
+ - Installs `redis-server` as well as `elasticsearch`.
  - Installs `build-essentials` as well as interpreters and dev packages for:
    - ruby
    - nodejs

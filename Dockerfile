@@ -53,6 +53,8 @@ RUN apt-get install -qy \
     ruby ruby-dev \
     nodejs \
     mysql-server \
+    redis-server \
+    elasticsearch \
     sudo
 
 # All the PHP bullshit
