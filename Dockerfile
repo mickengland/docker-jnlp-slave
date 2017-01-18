@@ -33,6 +33,10 @@ USER root
 COPY dotdeb.list /etc/apt/sources.list.d/dotdeb.list
 RUN wget -O- https://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
+# Get a recent version of MySQL
+RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5
+COPY mysql.list /etc/apt/sources.list.d/mysql.list
+
 # Getting recent node version
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 
@@ -44,15 +48,15 @@ RUN apt-get update -y
 RUN apt-get dist-upgrade -y
 
 # Configure Mysql
-RUN echo 'mysql-server mysql-server/root_password password root' | debconf-set-selections
-RUN echo 'mysql-server mysql-server/root_password_again password root' | debconf-set-selections
+RUN echo 'mysql-community-server mysql-community-server/root-pass password root' | debconf-set-selections
+RUN echo 'mysql-community-server mysql-community-server/re-root-pass password root' | debconf-set-selections
 
 RUN apt-get install -qy \
     curl s3cmd \
     build-essential \
     ruby ruby-dev \
     nodejs \
-    mysql-server \
+    mysql-community-server \
     redis-server \
     elasticsearch \
     sudo
