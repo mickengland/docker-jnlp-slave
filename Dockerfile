@@ -61,6 +61,10 @@ RUN apt-get install -qy \
     elasticsearch \
     sudo
 
+RUN service mysql stop
+RUN service redis-server stop
+RUN service elasticsearch stop
+
 # All the PHP bullshit
 RUN apt-get install -qy \
     php7.0-cli php7.0-dev \
