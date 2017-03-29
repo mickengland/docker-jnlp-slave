@@ -45,11 +45,8 @@ RUN apt-get update -y
 RUN apt-get dist-upgrade -y
 
 # Configure Mysql
-RUN echo 'mysql-community-server mysql-community-server/root-pass password root' | debconf-set-selections
-RUN echo 'mysql-community-server mysql-community-server/re-root-pass password root' | debconf-set-selections
 
 RUN apt-get install -qy \
-    curl s3cmd \
     build-essential \
     mysql-community-server \
     sudo
