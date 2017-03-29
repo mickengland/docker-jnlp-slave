@@ -37,9 +37,6 @@ RUN wget -O- https://www.dotdeb.org/dotdeb.gpg | apt-key add -
 RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5
 COPY mysql.list /etc/apt/sources.list.d/mysql.list
 
-# Getting recent node version
-RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
-
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 
@@ -54,16 +51,10 @@ RUN echo 'mysql-community-server mysql-community-server/re-root-pass password ro
 RUN apt-get install -qy \
     curl s3cmd \
     build-essential \
-    ruby ruby-dev \
-    nodejs \
     mysql-community-server \
-    redis-server \
-    elasticsearch \
     sudo
 
 RUN service mysql stop
-RUN service redis-server stop
-RUN service elasticsearch stop
 
 # All the PHP bullshit
 RUN apt-get install -qy \
