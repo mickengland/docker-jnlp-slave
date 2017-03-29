@@ -43,6 +43,11 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 RUN apt-get update -y
 RUN apt-get dist-upgrade -y
 
+RUN apt-get install -qy \
+    curl s3cmd \
+    build-essential \
+    sudo
+
 # All the PHP bullshit
 RUN apt-get install -qy \
     php7.0-cli php7.0-dev \
