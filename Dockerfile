@@ -48,22 +48,10 @@ RUN apt-get update -y
 RUN apt-get dist-upgrade -y
 
 # Configure Mysql
-RUN echo 'mysql-community-server mysql-community-server/root-pass password root' | debconf-set-selections
-RUN echo 'mysql-community-server mysql-community-server/re-root-pass password root' | debconf-set-selections
 
 RUN apt-get install -qy \
-    curl s3cmd \
     build-essential \
-    ruby ruby-dev \
-    nodejs \
-    mysql-community-server \
-    redis-server \
-    elasticsearch \
     sudo
-
-RUN service mysql stop
-RUN service redis-server stop
-RUN service elasticsearch stop
 
 # All the PHP bullshit
 RUN apt-get install -qy \
