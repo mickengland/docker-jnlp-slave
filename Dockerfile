@@ -35,7 +35,6 @@ RUN wget -O- https://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
 # Get a recent version of MySQL
 RUN apt-key adv --keyserver pgp.mit.edu --recv-keys 5072E1F5
-COPY mysql.list /etc/apt/sources.list.d/mysql.list
 
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
@@ -43,15 +42,6 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 # Got up-to-date shit :)
 RUN apt-get update -y
 RUN apt-get dist-upgrade -y
-
-# Configure Mysql
-
-RUN apt-get install -qy \
-    build-essential \
-    mysql-community-server \
-    sudo
-
-RUN service mysql stop
 
 # All the PHP bullshit
 RUN apt-get install -qy \
